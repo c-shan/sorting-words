@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dutch Word Trainer</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="menu">
+      <button id="learnBtn">Learn</button>
+      <button id="dictateBtn">Dictation</button>
+    </div>
+
+    <div id="learnPage" class="page hidden">
+      <button id="toggleList">Toggle Word List</button>
+      <ul id="wordList" class="word-list"></ul>
+    </div>
+
+    <div id="dictatePage" class="page hidden">
+      <div class="controls">
+        <button id="speakWord">🔊</button>
+        <button id="showTranslation">🌐</button>
+      </div>
+      <div id="translation" class="translation hidden"></div>
+      <input type="text" id="userInput" placeholder="Type the Dutch word">
+      <div id="feedback"></div>
+      <button id="nextWord">Next Word</button>
+    </div>
+  </div>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
