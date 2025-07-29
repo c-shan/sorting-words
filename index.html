@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dutch Vocabulary Learning</title>
+    <title>Dutch Vocabulary Master</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -18,12 +18,12 @@
             color: #333;
             min-height: 100vh;
             padding: 20px;
-            background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e7f4 100%);
         }
         
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            max-width: 800px;
+            margin: 20px auto;
             background-color: white;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
@@ -32,22 +32,22 @@
         
         header {
             text-align: center;
-            padding: 30px 20px;
+            padding: 25px 20px;
             background: linear-gradient(135deg, #1a73e8, #0d47a1);
             color: white;
             position: relative;
         }
         
         h1 {
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 300;
-            max-width: 700px;
+            max-width: 600px;
             margin: 0 auto;
             opacity: 0.9;
         }
@@ -55,15 +55,15 @@
         .navigation {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            padding: 20px;
+            gap: 10px;
+            padding: 15px;
             background: #f1f8ff;
             border-bottom: 1px solid #e0e0e0;
         }
         
         .nav-btn {
-            padding: 12px 30px;
-            font-size: 1.1rem;
+            padding: 10px 25px;
+            font-size: 1rem;
             background: white;
             color: #1a73e8;
             border: 2px solid #1a73e8;
@@ -71,45 +71,43 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
         .nav-btn:hover {
             background: #1a73e8;
             color: white;
-            transform: translateY(-2px);
         }
         
         .nav-btn.active {
             background: #1a73e8;
             color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            box-shadow: 0 3px 8px rgba(26, 115, 232, 0.3);
         }
         
         .page {
-            padding: 30px;
+            padding: 25px;
             display: none;
-            min-height: 500px;
+            min-height: 400px;
         }
         
         .page.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
         
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
         .page-title {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             color: #1a237e;
-            font-size: 2rem;
+            font-size: 1.6rem;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 12px;
         }
         
         .page-title::after {
@@ -118,8 +116,8 @@
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: linear-gradient(90deg, #1a73e8, #0d47a1);
             border-radius: 2px;
         }
@@ -129,8 +127,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 0 auto;
-            max-width: 900px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -138,15 +135,14 @@
         .vocabulary-table th {
             background: #1a73e8;
             color: white;
-            padding: 15px;
+            padding: 12px;
             text-align: left;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 0.95rem;
         }
         
         .vocabulary-table td {
-            padding: 15px;
+            padding: 12px;
             border-bottom: 1px solid #e0e0e0;
             transition: background-color 0.2s;
         }
@@ -159,18 +155,14 @@
             background-color: #f8fbff;
         }
         
-        .vocabulary-table tr:hover td {
-            background-color: #e3f2fd;
-        }
-        
         .dutch-word {
             font-weight: 600;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #0d47a1;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
         
         .dutch-word:hover {
@@ -178,244 +170,202 @@
         }
         
         .dutch-word i {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.7;
             transition: all 0.3s;
         }
         
         .dutch-word:hover i {
             opacity: 1;
-            transform: scale(1.2);
+            transform: scale(1.15);
         }
         
         .english-word {
             font-style: italic;
             color: #555;
+            font-size: 0.95rem;
         }
         
         /* Dictate Page Styles */
         .dictate-container {
-            max-width: 700px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            padding: 15px;
+        }
+        
+        .word-display {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: #0d47a1;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
         }
         
         .input-container {
             position: relative;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         #dutchInput {
             width: 100%;
-            padding: 16px 20px;
+            padding: 14px 18px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             transition: all 0.3s ease;
             outline: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
         }
         
         #dutchInput:focus {
             border-color: #1a73e8;
-            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
         }
         
         .action-buttons {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             justify-content: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         
         .action-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             border: none;
             background: #1a73e8;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
         .action-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
+            transform: scale(1.08);
         }
         
-        .action-btn.translate {
+        .action-btn.hint {
             background: #34a853;
         }
         
-        .action-btn.speak {
-            background: #4285f4;
-        }
-        
-        .action-btn.reset {
-            background: #ea4335;
+        .hint-box {
+            background-color: #e3f2fd;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin: 15px auto;
+            text-align: center;
+            font-style: italic;
+            color: #1a73e8;
+            max-width: 300px;
+            display: none;
         }
         
         .result-card {
             background: #f8fbff;
             border-radius: 10px;
-            padding: 25px;
+            padding: 20px;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
             border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-        }
-        
-        .result-title {
-            font-size: 1.3rem;
-            color: #1a237e;
-            margin-bottom: 15px;
-            font-weight: 600;
+            display: none;
         }
         
         .dutch-result {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #0d47a1;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .english-result {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #34a853;
             font-style: italic;
-            margin-bottom: 20px;
         }
         
         .feedback {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             padding: 10px;
             border-radius: 8px;
-            margin-top: 15px;
+            margin-top: 12px;
         }
         
         .correct {
             background-color: #e6f4ea;
             color: #34a853;
-            border: 1px solid #34a853;
         }
         
         .incorrect {
             background-color: #fce8e6;
             color: #ea4335;
-            border: 1px solid #ea4335;
         }
         
         .instructions {
             text-align: center;
-            margin-top: 30px;
-            font-size: 1.1rem;
+            margin-top: 25px;
+            font-size: 0.95rem;
             color: #555;
             background: #f8f9fa;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            max-width: 800px;
-            margin: 40px auto 0;
             border: 1px solid #e0e0e0;
         }
         
         .instructions p {
-            margin-bottom: 10px;
-            line-height: 1.6;
-        }
-        
-        .instructions strong {
-            color: #1a73e8;
-        }
-        
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            margin-top: 20px;
-            padding: 15px;
-            background: #f1f8ff;
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .stat-box {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #1a73e8;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
         
         .footer {
             text-align: center;
             color: #666;
-            padding: 25px;
-            font-size: 1rem;
+            padding: 20px;
+            font-size: 0.9rem;
             background: #f1f8ff;
             border-top: 1px solid #e0e0e0;
         }
         
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .vocabulary-table {
-                display: block;
-                overflow-x: auto;
+        @media (max-width: 600px) {
+            .container {
+                margin: 10px auto;
+            }
+            
+            header {
+                padding: 20px 15px;
             }
             
             h1 {
-                font-size: 2.2rem;
-            }
-            
-            .page-title {
                 font-size: 1.8rem;
-            }
-            
-            .nav-btn {
-                padding: 10px 20px;
-                font-size: 1rem;
-            }
-            
-            .dutch-word {
-                font-size: 1.1rem;
-            }
-            
-            .stats-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .navigation {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-btn {
-                width: 90%;
             }
             
             .page {
                 padding: 20px 15px;
             }
             
-            .action-buttons {
-                flex-wrap: wrap;
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .vocabulary-table th, 
+            .vocabulary-table td {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            .dutch-word {
+                font-size: 1rem;
             }
         }
     </style>
@@ -423,17 +373,17 @@
 <body>
     <div class="container">
         <header>
-            <h1>Dutch Vocabulary Learning</h1>
-            <div class="subtitle">Master essential Dutch words with interactive learning tools</div>
+            <h1>Dutch Vocabulary Master</h1>
+            <div class="subtitle">Learn Dutch words with authentic pronunciation</div>
         </header>
         
         <div class="navigation">
-            <button class="nav-btn active" id="learnBtn">Learn Vocabulary</button>
-            <button class="nav-btn" id="dictateBtn">Practice Dictation</button>
+            <button class="nav-btn active" id="learnBtn">Learn</button>
+            <button class="nav-btn" id="dictateBtn">Dictate</button>
         </div>
         
         <div id="learnPage" class="page active">
-            <h2 class="page-title">Dutch Vocabulary List</h2>
+            <h2 class="page-title">Dutch Vocabulary</h2>
             <table class="vocabulary-table">
                 <thead>
                     <tr>
@@ -445,68 +395,50 @@
                     <!-- Vocabulary rows will be generated here -->
                 </tbody>
             </table>
-            
-            <div class="instructions">
-                <p><strong>How to use:</strong></p>
-                <p>Click on any Dutch word to hear its pronunciation</p>
-                <p>Hover over words to highlight them</p>
-            </div>
         </div>
         
         <div id="dictatePage" class="page">
-            <h2 class="page-title">Dutch Dictation Practice</h2>
+            <h2 class="page-title">Dictation Practice</h2>
             <div class="dictate-container">
+                <div class="word-display" id="currentWordDisplay">
+                    Click speaker to hear Dutch word
+                </div>
+                
                 <div class="input-container">
-                    <input type="text" id="dutchInput" placeholder="Type the Dutch word you hear...">
+                    <input type="text" id="dutchInput" placeholder="Type the Dutch word...">
                 </div>
                 
                 <div class="action-buttons">
-                    <button class="action-btn speak" id="speakBtn">
+                    <button class="action-btn" id="speakBtn">
                         <i class="fas fa-volume-up"></i>
                     </button>
-                    <button class="action-btn translate" id="translateBtn">
-                        <i class="fas fa-language"></i>
-                    </button>
-                    <button class="action-btn reset" id="resetBtn">
-                        <i class="fas fa-redo"></i>
+                    <button class="action-btn hint" id="hintBtn">
+                        <i class="fas fa-lightbulb"></i>
                     </button>
                 </div>
                 
-                <div class="result-card">
-                    <div class="result-title">Your Result:</div>
-                    <div class="dutch-result" id="dutchResult">-</div>
-                    <div class="english-result" id="englishResult">-</div>
-                    <div class="feedback" id="feedback">Enter a word and press Enter to check</div>
+                <div class="hint-box" id="hintBox">
+                    <span id="englishHint"></span>
                 </div>
                 
-                <div class="stats-container">
-                    <div class="stat-box">
-                        <div class="stat-value" id="wordsPracticed">0</div>
-                        <div class="stat-label">Words Practiced</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value" id="correctAnswers">0</div>
-                        <div class="stat-label">Correct Answers</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-value" id="successRate">0%</div>
-                        <div class="stat-label">Success Rate</div>
-                    </div>
+                <div class="result-card" id="resultCard">
+                    <div class="dutch-result" id="dutchResult"></div>
+                    <div class="english-result" id="englishResult"></div>
+                    <div class="feedback" id="feedback"></div>
                 </div>
                 
                 <div class="instructions">
                     <p><strong>How to practice:</strong></p>
-                    <p>1. Click the speaker icon to hear a Dutch word</p>
-                    <p>2. Type what you hear in the input field and press Enter</p>
-                    <p>3. The system will check your spelling and provide feedback</p>
-                    <p>4. Use the translation icon to see the English meaning</p>
-                    <p>5. Click reset to start a new word</p>
+                    <p>1. Click <i class="fas fa-volume-up"></i> to hear the Dutch word</p>
+                    <p>2. Type what you hear in the input field</p>
+                    <p>3. Press <strong>Enter</strong> to check your answer</p>
+                    <p>4. Click <i class="fas fa-lightbulb"></i> for English hint</p>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>Dutch Vocabulary Learning &copy; 2023 | Use headphones for best experience</p>
+            <p>Dutch Vocabulary Master &copy; 2023 | Authentic Dutch Pronunciation</p>
         </div>
     </div>
 
@@ -562,21 +494,19 @@
         const vocabularyList = document.getElementById('vocabularyList');
         const dutchInput = document.getElementById('dutchInput');
         const speakBtn = document.getElementById('speakBtn');
-        const translateBtn = document.getElementById('translateBtn');
-        const resetBtn = document.getElementById('resetBtn');
+        const hintBtn = document.getElementById('hintBtn');
+        const hintBox = document.getElementById('hintBox');
+        const englishHint = document.getElementById('englishHint');
+        const resultCard = document.getElementById('resultCard');
         const dutchResult = document.getElementById('dutchResult');
         const englishResult = document.getElementById('englishResult');
         const feedback = document.getElementById('feedback');
-        const wordsPracticedEl = document.getElementById('wordsPracticed');
-        const correctAnswersEl = document.getElementById('correctAnswers');
-        const successRateEl = document.getElementById('successRate');
+        const currentWordDisplay = document.getElementById('currentWordDisplay');
         
         // State variables
         let currentWord = null;
-        let attempts = 0;
-        let wordsPracticed = 0;
-        let correctAnswers = 0;
-        
+        let hintUsed = false;
+
         // Initialize the vocabulary list
         function initVocabularyList() {
             vocabularyList.innerHTML = '';
@@ -595,24 +525,32 @@
             });
         }
         
-        // Function to speak a word using Web Speech API
+        // Function to speak a word using Web Speech API with Dutch accent
         function speakWord(word) {
             if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                speechSynthesis.cancel();
+                
                 const utterance = new SpeechSynthesisUtterance(word);
                 utterance.lang = 'nl-NL'; // Dutch language
                 utterance.rate = 0.9; // Slightly slower for learning
+                utterance.pitch = 1.1; // Slightly higher pitch for Dutch accent
+                
+                // Try to find a Dutch voice
+                const dutchVoices = speechSynthesis.getVoices().filter(voice => 
+                    voice.lang === 'nl-NL' || voice.lang === 'nl'
+                );
+                
+                if (dutchVoices.length > 0) {
+                    utterance.voice = dutchVoices[0];
+                }
+                
                 speechSynthesis.speak(utterance);
                 
-                // Visual feedback
-                const cards = document.querySelectorAll('.dutch-word');
-                cards.forEach(card => {
-                    if (card.textContent.includes(word)) {
-                        card.style.color = '#e91e63';
-                        setTimeout(() => {
-                            card.style.color = '';
-                        }, 1000);
-                    }
-                });
+                // Update display
+                if (dictatePage.classList.contains('active')) {
+                    currentWordDisplay.textContent = "🔊 Listen carefully...";
+                }
             } else {
                 alert('Your browser does not support speech synthesis. Try Chrome or Edge.');
             }
@@ -624,54 +562,53 @@
             return vocabulary[randomIndex];
         }
         
+        // Function to start dictation exercise
+        function startDictation() {
+            currentWord = getRandomWord();
+            currentWordDisplay.textContent = "Click speaker to hear Dutch word";
+            speakWord(currentWord.dutch);
+            dutchInput.value = '';
+            resultCard.style.display = 'none';
+            hintBox.style.display = 'none';
+            hintUsed = false;
+            dutchInput.focus();
+        }
+        
+        // Function to show English hint
+        function showEnglishHint() {
+            if (currentWord) {
+                englishHint.textContent = currentWord.english;
+                hintBox.style.display = 'block';
+                hintUsed = true;
+            }
+        }
+        
         // Function to check user input
         function checkSpelling() {
             const userInput = dutchInput.value.trim().toLowerCase();
             if (!userInput) return;
             
-            wordsPracticed++;
-            wordsPracticedEl.textContent = wordsPracticed;
+            // Hide hint box
+            hintBox.style.display = 'none';
+            
+            // Show results
+            resultCard.style.display = 'block';
+            dutchResult.textContent = currentWord.dutch;
+            englishResult.textContent = currentWord.english;
             
             // Check if the input matches the current word
-            if (currentWord && userInput === currentWord.dutch.toLowerCase()) {
+            if (userInput === currentWord.dutch.toLowerCase()) {
                 feedback.textContent = "Correct! Well done!";
                 feedback.className = "feedback correct";
-                dutchResult.textContent = currentWord.dutch;
-                englishResult.textContent = currentWord.english;
-                correctAnswers++;
-                correctAnswersEl.textContent = correctAnswers;
             } else {
-                attempts++;
-                feedback.textContent = `Incorrect. Try again! (Attempt: ${attempts})`;
+                feedback.textContent = "Incorrect. Try again!";
                 feedback.className = "feedback incorrect";
             }
             
-            // Update success rate
-            const successRate = Math.round((correctAnswers / wordsPracticed) * 100);
-            successRateEl.textContent = `${successRate}%`;
-        }
-        
-        // Function to show translation
-        function showTranslation() {
-            if (currentWord) {
-                dutchResult.textContent = currentWord.dutch;
-                englishResult.textContent = currentWord.english;
-            } else {
-                alert('Please generate a word first');
-            }
-        }
-        
-        // Function to reset the exercise
-        function resetExercise() {
-            currentWord = getRandomWord();
-            speakWord(currentWord.dutch);
-            dutchInput.value = '';
-            dutchResult.textContent = '-';
-            englishResult.textContent = '-';
-            feedback.textContent = 'Enter the word you heard';
-            feedback.className = "feedback";
-            attempts = 0;
-            dutchInput.focus();
+            // Prepare for next word
+            setTimeout(() => {
+                startDictation();
+            }, 2000);
         }
         
         // Event Listeners
@@ -687,19 +624,18 @@
             learnBtn.classList.remove('active');
             dictatePage.classList.add('active');
             learnPage.classList.remove('active');
-            resetExercise();
+            startDictation();
         });
         
         speakBtn.addEventListener('click', () => {
             if (currentWord) {
                 speakWord(currentWord.dutch);
             } else {
-                resetExercise();
+                startDictation();
             }
         });
         
-        translateBtn.addEventListener('click', showTranslation);
-        resetBtn.addEventListener('click', resetExercise);
+        hintBtn.addEventListener('click', showEnglishHint);
         
         // Allow pressing Enter in input field to check spelling
         dutchInput.addEventListener('keypress', (e) => {
@@ -716,9 +652,6 @@
             if ('speechSynthesis' in window) {
                 speechSynthesis.getVoices();
             }
-            
-            // Set up word for dictation page
-            resetExercise();
         };
         
         // Expose functions to global scope for onclick attributes
