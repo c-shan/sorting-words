@@ -533,17 +533,6 @@
                 
                 const utterance = new SpeechSynthesisUtterance(word);
                 utterance.lang = 'nl-NL'; // Dutch language
-                utterance.rate = 0.9; // Slightly slower for learning
-                utterance.pitch = 1.1; // Slightly higher pitch for Dutch accent
-                
-                // Try to find a Dutch voice
-                const dutchVoices = speechSynthesis.getVoices().filter(voice => 
-                    voice.lang === 'nl-NL' || voice.lang === 'nl'
-                );
-                
-                if (dutchVoices.length > 0) {
-                    utterance.voice = dutchVoices[0];
-                }
                 
                 speechSynthesis.speak(utterance);
                 
