@@ -527,22 +527,11 @@
         
         // Function to speak a word using Web Speech API with Dutch accent
         function speakWord(word) {
-            if ('speechSynthesis' in window) {
-                // Cancel any ongoing speech
-                speechSynthesis.cancel();
-                
-                const utterance = new SpeechSynthesisUtterance(word);
-                utterance.lang = 'nl-NL'; // Dutch language
-                
-                speechSynthesis.speak(utterance);
-                
-                // Update display
-                if (dictatePage.classList.contains('active')) {
-                    currentWordDisplay.textContent = "🔊 Listen carefully...";
-                }
-            } else {
-                alert('Your browser does not support speech synthesis. Try Chrome or Edge.');
-            }
+            const utterance = new SpeechSynthesisUtterance(word);
+  utterance.lang = 'nl-NL';
+  speechSynthesis.speak(utterance);
+
+            
         }
         
         // Function to get a random Dutch word
