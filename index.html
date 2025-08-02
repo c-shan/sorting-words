@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dutch Vocabulary Master</title>
+    <title>Sorting words</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -35,21 +35,12 @@
             padding: 25px 20px;
             background: linear-gradient(135deg, #1a73e8, #0d47a1);
             color: white;
-            position: relative;
         }
         
         h1 {
             font-size: 2.2rem;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
-        }
-        
-        .subtitle {
-            font-size: 1.1rem;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0.9;
         }
         
         .navigation {
@@ -71,7 +62,6 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: 600;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
         .nav-btn:hover {
@@ -127,7 +117,6 @@
             width: 100%;
             border-collapse: collapse;
             margin: 0 auto;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
             border-radius: 10px;
             overflow: hidden;
         }
@@ -204,6 +193,8 @@
             align-items: center;
             justify-content: center;
             padding: 10px;
+            background: #f0f7ff;
+            border-radius: 10px;
         }
         
         .input-container {
@@ -219,7 +210,6 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             outline: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
         }
         
         #dutchInput:focus {
@@ -256,6 +246,10 @@
         
         .action-btn.hint {
             background: #34a853;
+        }
+        
+        .action-btn.next {
+            background: #9c27b0;
         }
         
         .hint-box {
@@ -373,8 +367,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Dutch Vocabulary Master</h1>
-            <div class="subtitle">Learn Dutch words with authentic pronunciation</div>
+            <h1>Sorting words</h1>
         </header>
         
         <div class="navigation">
@@ -405,7 +398,7 @@
                 </div>
                 
                 <div class="input-container">
-                    <input type="text" id="dutchInput" placeholder="Type the Dutch word...">
+                    <input type="text" id="dutchInput" placeholder="Type the Dutch word..." autocomplete="off">
                 </div>
                 
                 <div class="action-buttons">
@@ -414,6 +407,9 @@
                     </button>
                     <button class="action-btn hint" id="hintBtn">
                         <i class="fas fa-lightbulb"></i>
+                    </button>
+                    <button class="action-btn next" id="nextBtn">
+                        <i class="fas fa-arrow-right"></i>
                     </button>
                 </div>
                 
@@ -433,12 +429,13 @@
                     <p>2. Type what you hear in the input field</p>
                     <p>3. Press <strong>Enter</strong> to check your answer</p>
                     <p>4. Click <i class="fas fa-lightbulb"></i> for English hint</p>
+                    <p>5. Click <i class="fas fa-arrow-right"></i> for next word</p>
                 </div>
             </div>
         </div>
         
         <div class="footer">
-            <p>Dutch Vocabulary Master &copy; 2023 | Authentic Dutch Pronunciation</p>
+            <p>Sorting words &copy; 2023 | Dutch Vocabulary Learning</p>
         </div>
     </div>
 
@@ -495,6 +492,7 @@
         const dutchInput = document.getElementById('dutchInput');
         const speakBtn = document.getElementById('speakBtn');
         const hintBtn = document.getElementById('hintBtn');
+        const nextBtn = document.getElementById('nextBtn');
         const hintBox = document.getElementById('hintBox');
         const englishHint = document.getElementById('englishHint');
         const resultCard = document.getElementById('resultCard');
@@ -527,11 +525,33 @@
         
         // Function to speak a word using Web Speech API with Dutch accent
         function speakWord(word) {
-            const utterance = new SpeechSynthesisUtterance(word);
-  utterance.lang = 'nl-NL';
-  speechSynthesis.speak(utterance);
-
-            
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(word);
+                utterance.lang = 'nl-NL'; // Dutch language
+                utterance.rate = 0.9; // Slightly slower for learning
+                utterance.pitch = 1.1; // Slightly higher pitch for Dutch accent
+                
+                // Try to find a Dutch voice
+                const dutchVoices = speechSynthesis.getVoices().filter(voice => 
+                    voice.lang === 'nl-NL' || voice.lang === 'nl'
+                );
+                
+                if (dutchVoices.length > 0) {
+                    utterance.voice = dutchVoices[0];
+                }
+                
+                speechSynthesis.speak(utterance);
+                
+                // Update display
+                if (dictatePage.classList.contains('active')) {
+                    currentWordDisplay.textContent = "🔊 Listen carefully...";
+                }
+            } else {
+                alert('Your browser does not support speech synthesis. Try Chrome or Edge.');
+            }
         }
         
         // Function to get a random Dutch word
@@ -566,9 +586,6 @@
             const userInput = dutchInput.value.trim().toLowerCase();
             if (!userInput) return;
             
-            // Hide hint box
-            hintBox.style.display = 'none';
-            
             // Show results
             resultCard.style.display = 'block';
             dutchResult.textContent = currentWord.dutch;
@@ -582,13 +599,13 @@
                 feedback.textContent = "Incorrect. Try again!";
                 feedback.className = "feedback incorrect";
             }
-            
-            // Prepare for next word
-            setTimeout(() => {
-                startDictation();
-            }, 2000);
         }
         
+        // Function to move to next word
+        function nextWord() {
+            startDictation();
+        }
+
         // Event Listeners
         learnBtn.addEventListener('click', () => {
             learnBtn.classList.add('active');
@@ -614,6 +631,7 @@
         });
         
         hintBtn.addEventListener('click', showEnglishHint);
+        nextBtn.addEventListener('click', nextWord);
         
         // Allow pressing Enter in input field to check spelling
         dutchInput.addEventListener('keypress', (e) => {
